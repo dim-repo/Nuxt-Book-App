@@ -86,24 +86,13 @@ export default class IndexPage extends Vue {
     this.updateBookData();
   }
 
+  filterBook(category: String) :Array<Book>{
+    return this.bookCollection.filter((book: Book) => book.category.toLowerCase() == category.toLowerCase());
+  }
   updateBookData(): void {
-    this.recentBooks = this.bookCollection.filter((book: Book) => {
-      if (book.category.toLowerCase() == "recent") {
-        return book;
-      }
-    });
-
-    this.favoriteBooks = this.bookCollection.filter((book: Book) => {
-      if (book.category.toLowerCase() == "favorite") {
-        return book;
-      }
-    });
-
-    this.bestBooks = this.bookCollection.filter((book: Book) => {
-      if (book.category.toLowerCase() == "best") {
-        return book;
-      }
-    });
+    this.recentBooks = this.filterBook('recent');
+    this.favoriteBooks = this.filterBook('favorite');
+    this.bestBooks = this.filterBook('best');
   }
 
   saveBook(bookData: Book): void {

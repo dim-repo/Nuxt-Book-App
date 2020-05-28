@@ -27,18 +27,12 @@ export const mutations = mutationTree(state, {
 	},
 
 	removeFromCollection(state, bookData: Book){
-		state.collection = state.collection.filter((book: Book) => {
-			if(book.name.toLowerCase() != bookData.name.toLowerCase()){
-				return book;
-			}
-		})
+		state.collection = state.collection.filter((book: Book) => book.name.toLowerCase() != bookData.name.toLowerCase());
 	},
 
 	getBook(state, name: String){
-		state.bookData = state.collection.find((book: Book)=>{
-			return book.name.toLowerCase() == name.toLowerCase()
-		}) || new Book();
- }
+		state.bookData = state.collection.find((book: Book )=> book.name.toLowerCase() == name.toLowerCase() ) || new Book();
+ 	}
 
 });
 
